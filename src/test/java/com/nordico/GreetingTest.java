@@ -1,8 +1,6 @@
 package com.nordico;
 
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,6 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 class GreetingTest {
 
     private Greeting greeting;
+
+    @BeforeAll
+    static void beforeAll() {
+        System.out.println("I am only run once before all other methods...");
+    }
 
     @BeforeEach
     void setUp() {
@@ -29,5 +32,20 @@ class GreetingTest {
     @Test
     void testHelloWorld() {
         System.out.println(greeting.helloWorld("Jarrod"));
+    }
+
+    @Test
+    void testHelloWorld2() {
+        System.out.println(greeting.helloWorld("Sam"));
+    }
+
+    @AfterEach
+    void tearDown() {
+        System.out.println("After each...");
+    }
+
+    @AfterAll
+    static void afterAll() {
+        System.out.println("I only run once after all other methods...");
     }
 }
